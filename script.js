@@ -1,58 +1,64 @@
-let movimientos = JSON.parse(localStorage.getItem("movimientos")) || [];
-
-const form = document.getElementById("form");
-const tabla = document.getElementById("tabla");
-const stockLista = document.getElementById("stock");
-
-form.addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const data = {
-        medicamento: document.getElementById("medicamento").value,
-        tipo: document.getElementById("tipo").value,
-        cantidad: parseInt(document.getElementById("cantidad").value),
-        paciente: document.getElementById("paciente").value,
-        usuario: document.getElementById("usuario").value
-    };
-
-    movimientos.push(data);
-    localStorage.setItem("movimientos", JSON.stringify(movimientos));
-
-    form.reset();
-    render();
-});
-
-function render() {
-    tabla.innerHTML = "";
-    stockLista.innerHTML = "";
-
-    let stock = {};
-
-    movimientos.forEach(m => {
-        if (!stock[m.medicamento]) {
-            stock[m.medicamento] = 0;
-        }
-
-        if (m.tipo === "Entrada") {
-            stock[m.medicamento] += m.cantidad;
-        } else {
-            stock[m.medicamento] -= m.cantidad;
-        }
-
-        tabla.innerHTML += `
-            <tr>
-                <td>${m.medicamento}</td>
-                <td>${m.tipo}</td>
-                <td>${m.cantidad}</td>
-                <td>${m.paciente}</td>
-                <td>${m.usuario}</td>
-            </tr>
-        `;
-    });
-
-    for (let med in stock) {
-        stockLista.innerHTML += `<li>${med}: ${stock[med]}</li>`;
-    }
+body {
+    font-family: Arial;
+    background: #eef3f8;
+    padding: 20px;
 }
 
-render();
+h1 {
+    color: #2c3e50;
+}
+
+.form-container {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+input, select {
+    padding: 8px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 8px 15px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: #2980b9;
+}
+
+table {
+    width: 100%;
+    background: white;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th {
+    background: #3498db;
+    color: white;
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+    background: #f1f1f1;
+}
+
+ul {
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+}
