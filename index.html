@@ -8,37 +8,52 @@
 
 <h1>💊 Control de Stock</h1>
 
-<form id="form">
-    <input type="text" id="medicamento" placeholder="Medicamento" required>
+<div class="form-container">
+    <form id="form">
+        <input type="text" id="medicamento" placeholder="Medicamento" required>
 
-    <select id="tipo">
-        <option value="Entrada">Entrada</option>
-        <option value="Salida">Salida</option>
-    </select>
+        <select id="tipo">
+            <option value="Entrada">Entrada</option>
+            <option value="Salida">Salida</option>
+        </select>
 
-    <input type="number" id="cantidad" placeholder="Cantidad" required>
-    <input type="text" id="paciente" placeholder="Paciente">
-    <input type="text" id="usuario" placeholder="Usuario">
+        <input type="number" id="cantidad" placeholder="Cantidad" required>
+        <input type="text" id="residente" placeholder="Residente">
+        <input type="text" id="usuario" placeholder="Usuario">
 
-    <button type="submit">Agregar</button>
-</form>
+        <button type="submit">Agregar</button>
+    </form>
+</div>
 
 <h2>📊 Stock</h2>
 <ul id="stock"></ul>
 
 <h2>📋 Movimientos</h2>
+
 <table>
     <thead>
         <tr>
+            <th>Fecha</th>
             <th>Medicamento</th>
             <th>Tipo</th>
             <th>Cantidad</th>
-            <th>Paciente</th>
+            <th>Residente</th>
             <th>Usuario</th>
         </tr>
     </thead>
     <tbody id="tabla"></tbody>
 </table>
+
+<hr>
+
+<h2>👥 Residentes</h2>
+
+<form id="formResidente">
+    <input type="text" id="nuevoResidente" placeholder="Nombre del residente">
+    <button type="submit">Agregar</button>
+</form>
+
+<ul id="listaResidentes"></ul>
 
 <script src="script.js"></script>
 
